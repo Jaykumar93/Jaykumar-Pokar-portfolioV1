@@ -15,7 +15,7 @@ export const resume: ResumeData = {
     { label: "GitHub", url: "https://github.com/Jaykumar93" },
   ],
   summary:
-    "Full-stack developer with 2 years of production experience building scalable .NET Core / ASP.NET backends and Angular UI components, plus hands-on experience shipping AI-integrated applications end to end — including a React Native app with a Retrieval-Augmented Generation (RAG) coaching assistant built on Google Gemini, Groq, and Supabase pgvector. Comfortable owning a feature from database schema through UI to LLM integration.",
+    "Full-stack developer with 2 years of production experience building scalable .NET Core / ASP.NET backends and Angular UI components for a high-traffic B2B platform — shipping measurable wins like a 40% efficiency gain and Beacon, a 7-widget analytics dashboard used company-wide. Also has hands-on experience shipping AI-integrated applications end to end, including a React Native app with a Retrieval-Augmented Generation (RAG) coaching assistant built on Google Gemini, Groq, and Supabase pgvector. Comfortable owning a feature from database schema through UI to LLM integration.",
   quickFacts: [
     { label: "Location", value: "Pune, India" },
     { label: "Company", value: "Coditas" },
@@ -56,8 +56,10 @@ export const resume: ResumeData = {
         "Scaled ASP.NET Core REST APIs serving reporting and calling workflows for a high-traffic production system used by thousands of users.",
         "Boosted large-scale operations efficiency by 40% by shipping Bulk Assignment Upload, Bulk Data Update, and automated reporting features, building both the .NET Core backend services and the Angular UI components.",
         "Cut API request processing time by 25% by refactoring the backend filter pipeline into a modular, testable architecture.",
-        "Eliminated a redundant DB round-trip and an O(n) linear scan from a latency-critical call-transfer path, and removed an unnecessary transaction wrapper from the recording-playback path to cut DB contention.",
-        "Designed and shipped Beacon, a 7-widget sales-performance dashboard for reps and managers — new SQL Server schema and stored procedures, .NET Core services, and an Angular/Kendo UI, including Redis-locked Lead Pool checkout and a consolidated follow-up queue with CRM re-attribution.",
+        "Eliminated a redundant DB round-trip and an O(n) linear scan from a latency-critical call-transfer path, cutting delay on every agent-to-lead pop-up.",
+        "Removed an unnecessary transaction wrapper from the recording-playback path to cut DB contention.",
+        "Designed and shipped Beacon, a 7-widget sales-performance dashboard for reps and managers — new SQL Server schema and stored procedures, .NET Core services, and an Angular/Kendo UI.",
+        "Built Redis-locked batch checkout for a shared Lead Pool and a consolidated cross-list follow-up queue with CRM re-attribution, both shipped as part of Beacon.",
         "Resolved 200+ production and pre-production defects over 2 years by pairing with QA and product teams, improving system stability and reducing recurring incidents.",
         "Delivered business-critical backend enhancements ahead of schedule, reducing delivery timelines by 20% and earning direct client appreciation.",
         "Ran two-week Agile sprints with GitLab version control and Jira-tracked backlogs, keeping release cadence predictable across the team.",

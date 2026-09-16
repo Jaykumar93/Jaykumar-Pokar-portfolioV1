@@ -1,3 +1,8 @@
+export interface Metric {
+  value: string;
+  label: string;
+}
+
 export interface ExperienceEntry {
   role: string;
   company: string;
@@ -5,6 +10,7 @@ export interface ExperienceEntry {
   start: string;
   end: string;
   bullets: string[];
+  metrics: Metric[];
 }
 
 export interface ProjectEntry {
@@ -13,6 +19,7 @@ export interface ProjectEntry {
   stack: string[];
   bullets: string[];
   link?: string;
+  docsLink?: string;
 }
 
 export interface EducationEntry {
@@ -29,6 +36,7 @@ export interface ResumeData {
   email: string;
   links: { label: string; url: string }[];
   summary: string;
+  quickFacts: { label: string; value: string }[];
   skills: Record<string, string[]>;
   experience: ExperienceEntry[];
   projects: ProjectEntry[];

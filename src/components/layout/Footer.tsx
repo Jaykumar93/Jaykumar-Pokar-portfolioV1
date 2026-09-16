@@ -1,7 +1,17 @@
+"use client";
+
+import { usePathname } from "next/navigation";
 import { resume } from "@/data/resume";
 
+// The home page renders its own footer inline; this generic one is kept as
+// a fallback for any future route added beside "/".
+const HIDE_ON = ["/"];
+
 export function Footer() {
+  const pathname = usePathname();
   const year = new Date().getFullYear();
+  if (HIDE_ON.includes(pathname ?? "")) return null;
+
   return (
     <footer className="border-t border-black/10 py-8 text-center text-sm opacity-70 dark:border-white/10">
       <div className="mx-auto flex max-w-5xl flex-col items-center gap-2 px-6">

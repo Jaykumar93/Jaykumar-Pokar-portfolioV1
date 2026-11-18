@@ -2,7 +2,7 @@ import type { LayerKey } from "./types";
 import { engIndex } from "./engineering";
 
 export const bio = [
-  "I'm a full-stack developer in Pune. For three years at Coditas I've worked on a B2B outbound sales-calling platform, from its older .NET Framework and WCF code to newer .NET APIs with an Angular interface.",
+  "I'm a full stack AI engineer in Pune. For three years at Coditas I've worked on a B2B outbound sales-calling platform, from its older .NET Framework and WCF code to newer .NET APIs with an Angular interface.",
   "I like owning a feature end to end: the schema, the service, the screen and, lately, the LLM call. I started as an intern in January 2024 by building a whole app alone, and I still work that way. Ship it, then make it fast.",
   "Outside work I build Cursus, a free marathon-training app where rules decide the numbers and AI explains them. I built it to go deeper on AI than my day job asks.",
   "I use Claude, Claude Code, Cursor and ChatGPT while I build, and I keep correctness in tested code, not in the model.",

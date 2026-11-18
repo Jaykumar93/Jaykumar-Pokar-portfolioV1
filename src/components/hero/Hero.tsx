@@ -7,7 +7,7 @@ export function Hero() {
     <section className="hero">
       <div className="wrap hero-grid">
         <div>
-          <span className="eyebrow fade">Full-stack developer, {profile.location}</span>
+          <span className="eyebrow fade">Full Stack AI Engineer, {profile.location}</span>
           <h1 aria-label={profile.name}>
             <span className="l">
               <span>Jaykumar</span>

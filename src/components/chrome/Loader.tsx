@@ -80,7 +80,7 @@ export function Loader() {
         <div className="ld-name">
           Jaykumar Pokar<b>.</b>
         </div>
-        <div className="ld-role">Full-stack developer</div>
+        <div className="ld-role">Full Stack AI Engineer</div>
         <div className="ld-bar" aria-hidden="true">
           {LAYERS.map((l, i) => {
             const fill = Math.max(0, Math.min(1, (pct - i * 25) / 25));

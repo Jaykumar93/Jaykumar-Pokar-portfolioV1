@@ -1,6 +1,6 @@
 export const profile = {
   name: "Jaykumar Pokar",
-  title: "Full Stack Developer | .NET, Angular/React, AI-Integrated Applications",
+  title: "Full Stack AI Engineer | .NET, Angular/React, AI-Integrated Applications",
   location: "Pune, India",
   email: "jaykumarpokar9@gmail.com",
   github: "https://github.com/Jaykumar93",

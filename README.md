@@ -1,14 +1,21 @@
-# Jaykumar Pokar — Portfolio
+# Jaykumar Pokar, Portfolio
 
-Single-page personal portfolio built with Next.js (App Router) and React Three Fiber. Live at [jaykumarpokar.netlify.app](https://jaykumarpokar.netlify.app).
+Single-page developer portfolio built with Next.js (App Router). Live at [jaykumarpokar.netlify.app](https://jaykumarpokar.netlify.app).
+
+## Design
+
+- **Colour encodes the four layers** of the stack: Data (blue), Services (ochre), Interface (teal) and AI (rose). The same four colours appear in the layer stack, the toolkit, the request trace and the project cards. Primary actions are neutral ink.
+- Success and failure states are always green and red, paired with a check or cross.
+- Light and dark themes (follows the system, with a toggle). Colour ramps were generated in OKLCH and contrast was measured.
+- Glass is used only on the floating nav.
+- The original design mockup lives in [`design/portfolio-mockup.html`](design/portfolio-mockup.html).
 
 ## Stack
 
 - **Framework:** Next.js 16 (App Router, Turbopack), React 19, TypeScript
-- **3D:** react-three-fiber + drei — the liquid-glass hero object (`src/components/three/LiquidBall.tsx`), a physically-based draggable/splittable blob with `MeshTransmissionMaterial` and an HDRI environment
-- **Styling:** CSS Modules, hand-rolled (no component library)
-- **Content:** resume/project data is plain TypeScript objects in `src/data/` — no CMS
-- **Contact form:** [Web3Forms](https://web3forms.com) (client-side POST, no backend needed — works identically on Vercel/Netlify/any static host)
+- **Styling:** plain CSS tokens in `src/app/globals.css` (no UI library), fonts via `next/font` (Familjen Grotesk, Geist, Geist Mono)
+- **Content:** typed data modules in `src/data/`, no CMS
+- **Contact form:** [Web3Forms](https://web3forms.com), client-side POST, no backend needed
 - **Deployment:** Netlify, auto-deploys from `master`
 
 ## Getting started
@@ -22,53 +29,41 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ### Environment variables
 
-Copy `.env.local.example` to `.env.local` and fill in a free [Web3Forms](https://web3forms.com) access key (just enter your email on their site — no account needed) for the contact form to actually send:
+Copy `.env.local.example` to `.env.local` and add a free [Web3Forms](https://web3forms.com) access key so the contact form can send:
 
 ```
 NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY=your-key-here
 ```
 
-Also add the same variable in your deploy host's environment settings (Vercel/Netlify project settings) before deploying, since it's baked in at build time.
+Add the same variable in your deploy host's environment settings, since it is baked in at build time.
 
 ## Project structure
 
 ```
 src/
-  app/
-    page.tsx           # the entire site — hero, about, toolkit, experience, projects, contact
-    page.module.css     # styles for page.tsx
-    layout.tsx          # root layout, metadata
-    icon.tsx             # dynamically generated favicon (JP monogram)
-    apple-icon.tsx        # dynamically generated iOS home-screen icon
+  app/            layout (fonts, theme init), page, globals.css (tokens + styles)
   components/
-    PrototypeNav.tsx     # fixed nav bar with eased smooth-scroll section jumps
-    SocialRail.tsx        # side social icon rail
-    ParallaxShapes.tsx     # decorative background shapes
-    ContactForm.tsx         # Web3Forms-backed contact form
-    three/LiquidBall.tsx     # the 3D hero object
-    ui/
-      ScrambleText.tsx        # Matrix-style character-decode text effect
-      LoadingScreen.tsx        # branded preloader shown until 3D assets + fonts are ready
-      ProjectModal.tsx          # click-to-open project detail popup
-      Reveal.tsx                # scroll-triggered fade/rise wrapper
-      ArrowButton.tsx, CountUp.tsx, SectionLabel.tsx
-  data/
-    resume.ts             # experience, skills, summary — also the source for the downloadable resume text
-    projects.ts             # portfolio project cards (bullets, details, stack, links, sub-projects)
-  lib/
-    seo.ts                  # site metadata config (name, title, description, canonical URL)
-    fonts.ts                  # next/font setup
-    skillIcons.tsx              # maps skill names to react-icons components
+    chrome/       nav, theme toggle, command menu (Ctrl K), toast, progress bar, footer
+    hero/         hero and the interactive "Ask me" panel
+    sections/     metrics
+    about/        bio, story steps, draggable layer stack, principles
+    projects/     accordion, project visuals, case study overlay
+    engineering/  interactive explainers (rules vs AI, retrieval, offline-first, trace, cache, lock, scan)
+    experience/   scroll-driven timeline
+    toolkit/      grouped, filterable skills
+    contact/      contact form
+    providers/    UI context (case study, toast, command menu, cross-section navigation)
+  data/           profile, projects, jobs, skills, about, ask, engineering
+  hooks/, lib/    small shared helpers
 public/
-  resume.pdf               # the downloadable resume (regenerated from ../resume/, see below)
+  resume.pdf      the downloadable résumé
+  media/cursus/   real Cursus screenshots and promo video
+design/           the approved design mockup
 ```
 
-## Notable implementation details
+## Notes
 
-- **Loading screen → hero handoff:** the hero's name/title text doesn't start its scramble-in animation until the `LoadingScreen` component's exit transition finishes (gated via a `pageReady` state lifted to `Home`), so the decode effect is always the first thing visible rather than playing out invisibly behind the loader.
-- **Nav smooth-scroll:** custom eased `requestAnimationFrame` scroll (not `scroll-behavior: smooth`) so the speed/easing is consistent across browsers; sections have `scroll-margin-top` so the fixed nav never overlaps the landing point.
-- **Project modals:** `projects.ts` has both `bullets` (short teasers for the hover-preview card) and `details` (full write-ups for the click-to-open modal) — deliberately different content so the modal doesn't just repeat the card.
-
-## Related
-
-- **Resume source** (the actual resume.txt / .docx / .pdf and the build pipeline that generates them): see the separate `resume` repo — `public/resume.pdf` in this repo is a copy of its output, manually re-synced after resume edits.
+- Projects open as a compact accordion; each has a full case study overlay.
+- Cursus uses real app screenshots and a 20 second promo video. The Connect & Sell and Diet Planner visuals are illustrative recreations.
+- Timings in the Engineering explainers are illustrative.
+- Respects `prefers-reduced-motion`.

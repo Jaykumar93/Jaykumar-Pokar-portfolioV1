@@ -1,0 +1,6 @@
+/* The command menu mounts when opened, so it animates in with keyframes instead of a class toggle. */
+.overlay.pal.show .scrim{animation:palScrim .35s var(--ease) both}
+.overlay.pal.show .panel{animation:palPanel .5s var(--ease) both}
+@keyframes palScrim{from{opacity:0}}
+@keyframes palPanel{from{opacity:0;transform:translateY(24px) scale(.97)}}
+@media (prefers-reduced-motion:reduce){.overlay.pal.show .scrim,.overlay.pal.show .panel{animation:none}}

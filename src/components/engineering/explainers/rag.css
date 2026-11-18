@@ -1,0 +1,22 @@
+/* Branching flow for the coach explainer: common path, a Gemini available? check, two branches that rejoin. */
+.fork{display:flex;flex-direction:column;align-items:center;width:100%;max-width:460px;margin:0 auto}
+.fork .nodex{min-width:168px;text-align:center}
+.fork .nodex.done{border-color:var(--text-3)}
+.fork .nodex.dec{border-style:dashed;border-width:2px}
+.fk-v{display:block;width:2px;height:16px;background:var(--line);transition:background .4s}
+.fk-v.on{background:var(--text)}
+.fk-split,.fk-merge{display:grid;grid-template-columns:1fr 1fr;width:100%;height:20px}
+.fk-split span,.fk-merge span{display:block;transition:border-color .4s}
+.fk-split span{border-top:2px solid var(--line)}
+.fk-split span:first-child{margin-left:50%;border-left:2px solid var(--line);border-top-left-radius:10px}
+.fk-split span:last-child{margin-right:50%;border-right:2px solid var(--line);border-top-right-radius:10px}
+.fk-merge span{border-bottom:2px solid var(--line)}
+.fk-merge span:first-child{margin-left:50%;border-left:2px solid var(--line);border-bottom-left-radius:10px}
+.fk-merge span:last-child{margin-right:50%;border-right:2px solid var(--line);border-bottom-right-radius:10px}
+.fk-split span.on,.fk-merge span.on{border-color:var(--text)}
+.fk-branches{display:grid;grid-template-columns:1fr 1fr;width:100%}
+.fk-col{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:2px;transition:opacity .4s}
+.fk-col .nodex{min-width:0;width:calc(100% - 16px);max-width:190px}
+.fk-col.dim{opacity:.35}
+.fk-tag{padding:2px 9px;border-radius:4px;border:1px solid var(--line);background:var(--surface);font:500 .74rem var(--f-body);color:var(--text-2)}
+@media (max-width:420px){.fork .nodex{min-width:140px}.fk-col .nodex{width:calc(100% - 8px);padding:10px 8px}}

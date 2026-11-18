@@ -1,0 +1,4 @@
+.form-error{margin:0;padding:12px 14px;border-radius:8px;background:var(--surface-2);font-size:.9rem;color:var(--text)}
+.form-error::before{content:"\2715\00a0";color:var(--err)}
+.form-error a{text-decoration:underline}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none}

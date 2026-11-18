@@ -1,0 +1,39 @@
+/* Styles for the Cursus feature explainers and the bulk job explainer. */
+.rng{display:grid;gap:6px}
+.rng label{font:500 .85rem var(--f-body);color:var(--text-2)}
+.rng label b{color:var(--text)}
+.rng input[type="range"]{width:100%;accent-color:var(--text)}
+
+.bp{display:flex;align-items:flex-end;gap:3px;height:120px;padding-bottom:2px;border-bottom:1px solid var(--line)}
+.bp i{flex:1;min-width:4px;border-radius:3px 3px 0 0;transition:height .5s var(--ease)}
+.p-base{background:color-mix(in srgb,var(--text) 22%,var(--surface))}
+.p-build{background:color-mix(in srgb,var(--text) 42%,var(--surface))}
+.p-peak{background:var(--text)}
+.p-taper{background:color-mix(in srgb,var(--text) 62%,var(--surface))}
+.bp-leg{display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;font-size:.8rem;color:var(--text-2)}
+.bp-leg span{display:inline-flex;align-items:center;gap:6px}
+.bp-leg i{display:inline-block;width:10px;height:10px;border-radius:2px}
+
+.pw{display:grid;gap:6px}
+.pw-lab{font:500 .78rem var(--f-mono);color:var(--text-3)}
+.pw-row{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.pw-cell{padding:8px 2px;border-radius:8px;border:1px solid var(--line);background:var(--surface);text-align:center;line-height:1.3;transition:background .3s,border-color .3s}
+.pw-cell b{display:block;font:600 .85rem var(--f-display)}
+.pw-cell small{display:block;color:var(--text-3);font-size:.7rem}
+.pw-cell.missed{border-style:dashed}
+.pw-cell.done{background:var(--surface-2)}
+.pw-cell.moved{border-color:var(--text);border-width:2px}
+.prop{display:grid;gap:10px;padding:12px 14px;border-radius:8px;border:1px solid var(--text);background:var(--surface)}
+.prop p{margin:0;font-size:.92rem}
+
+.gps{display:block;width:100%;height:auto;border-radius:8px;border:1px solid var(--line);background:var(--surface)}
+
+.bk{display:grid;gap:4px}
+.bk-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-size:.86rem;transition:border-color .3s}
+.bk-row.ok{border-color:var(--ok)}
+.bk-row.fail{border-color:var(--err)}
+.bk-st{font:500 .8rem var(--f-body);color:var(--text-2)}
+.bk-row.ok .bk-st{color:var(--ok)}
+.bk-row.fail .bk-st{color:var(--err)}
+
+@media (max-width:560px){.pw-cell{padding:6px 0}.pw-cell b{font-size:.74rem}}

@@ -235,7 +235,6 @@ kbd{font:500 .68rem/1 var(--f-mono);padding:4px 6px;border-radius:6px;border:1px
 .job li::before{content:"";position:absolute;left:0;top:.7em;width:10px;height:1px;background:var(--accent-text)}
 
 /* projects stage */
-.show{display:grid;grid-template-columns:minmax(0,.62fr) minmax(0,1.38fr);gap:clamp(20px,3vw,44px);align-items:start}
 .plist{display:grid;gap:10px}
 .pt{text-align:left;border:1px solid var(--line);background:var(--surface);border-radius:18px;padding:18px 20px;transition:background .45s,color .45s,border-color .45s,transform .45s var(--ease);position:relative;overflow:hidden}
 .pt b{display:block;font:600 1.35rem/1.1 var(--f-display);letter-spacing:-.03em}
@@ -612,7 +611,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 @media (max-width:620px){.car{height:790px}.cs-vis{height:360px}.cs-vis .fan{transform:scale(.66);height:330px;margin-bottom:10px}.cs-vis .phone{transform:scale(.74)}.cs-info{padding:20px}.pfacts{grid-template-columns:repeat(3,minmax(0,1fr))}.cs{transform:translateX(calc(-50% + var(--o,0) * 62%)) scale(calc(1 - var(--a,0) * .14)) rotateY(calc(var(--o,0) * -12deg))}}
 
 @media (max-width:980px){
-  .hero-grid,.contact-grid,.about,.show,.case-hero,.eng{grid-template-columns:minmax(0,1fr)}
+  .hero-grid,.contact-grid,.about,.case-hero,.eng{grid-template-columns:minmax(0,1fr)}
   .metrics{grid-template-columns:repeat(2,minmax(0,1fr))}
   .hero-orb{right:-8px;top:-70px;width:110px;height:110px}
   .plist{grid-auto-flow:column;grid-auto-columns:minmax(200px,1fr);overflow-x:auto;padding-bottom:6px}
@@ -642,3 +641,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 /* node labels stay readable on the green and red result states */
 .nodex.hit small,.nodex.miss small{color:inherit;opacity:.9}
 .ask-a .aw{display:inline}
+
+/* Case study: moving between projects fades the content and keeps the overlay open. */
+.case-in{transition:opacity .3s ease,transform .4s var(--ease)}
+.case-in.swap{opacity:0;transform:translateY(10px);transition-duration:.18s}
+.case[data-nav].show .cn{animation-delay:calc(var(--k) * 70ms + 60ms)}
+.case[data-nav].show .gal figure{animation-delay:calc(var(--k) * 50ms + 60ms)}
+@media (prefers-reduced-motion:reduce){.case-in,.case-in.swap{transition:none}}

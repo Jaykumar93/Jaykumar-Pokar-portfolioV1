@@ -54,6 +54,9 @@ export function CaseStudy({ index, open, origin, onClose, onNavigate }: CaseStud
   const [show, setShow] = useState(false);
   const [play, setPlay] = useState(false);
   const [videoHost, setVideoHost] = useState<VideoHost>(null);
+  // Switching between projects fades the content instead of replaying the full reveal.
+  const [swapping, setSwapping] = useState(false);
+  const [navigated, setNavigated] = useState(false);
 
   // Derive state from props during render (avoids setState-in-effect): unhide on open,
   // drop `show` on close, and reset visuals/video whenever the project or open state changes.
@@ -65,6 +68,8 @@ export function CaseStudy({ index, open, origin, onClose, onNavigate }: CaseStud
     else setShow(false);
     setPlay(false);
     setVideoHost(null);
+    setSwapping(false);
+    setNavigated(false);
   }
   if (index !== prevIndex) {
     setPrevIndex(index);
@@ -131,14 +136,16 @@ export function CaseStudy({ index, open, origin, onClose, onNavigate }: CaseStud
   );
 
   const go = (target: number) => {
-    setShow(false);
     if (navTimer.current) clearTimeout(navTimer.current);
+    setNavigated(true);
+    setSwapping(true);
     navTimer.current = setTimeout(
       () => {
         onNavigate(target);
-        setShow(true);
+        if (rootRef.current) rootRef.current.scrollTop = 0;
+        setSwapping(false);
       },
-      reduced ? 0 : 350,
+      reduced ? 0 : 200,
     );
   };
 
@@ -153,6 +160,7 @@ export function CaseStudy({ index, open, origin, onClose, onNavigate }: CaseStud
     <div
       ref={rootRef}
       className={`case${show ? " show" : ""}`}
+      data-nav={navigated ? "" : undefined}
       id="case"
       hidden={hidden}
       role="dialog"
@@ -160,7 +168,7 @@ export function CaseStudy({ index, open, origin, onClose, onNavigate }: CaseStud
       aria-labelledby="c-title"
       style={style}
     >
-      <div className="case-in">
+      <div className={`case-in${swapping ? " swap" : ""}`}>
         <div className="case-bar">
           <button
             ref={backRef}

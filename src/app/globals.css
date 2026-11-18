@@ -376,7 +376,7 @@ kbd{font:500 .68rem/1 var(--f-mono);padding:4px 6px;border-radius:6px;border:1px
 .big{font:600 clamp(2.6rem,6.6vw,5.2rem)/.95 var(--f-display);letter-spacing:-.045em;margin:18px 0 0;text-wrap:balance;max-width:none}
 .big span{color:var(--accent-text)}
 .mail{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:30px}
-.mail code{font:500 .95rem var(--f-mono);padding:12px 14px;border-radius:12px;border:1px solid var(--line);background:var(--surface);user-select:all;overflow-wrap:anywhere}
+
 .soc{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
 form.card{display:grid;gap:16px}
 .fld{display:grid;gap:7px}
@@ -648,3 +648,15 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .case[data-nav].show .cn{animation-delay:calc(var(--k) * 70ms + 60ms)}
 .case[data-nav].show .gal figure{animation-delay:calc(var(--k) * 50ms + 60ms)}
 @media (prefers-reduced-motion:reduce){.case-in,.case-in.swap{transition:none}}
+
+/* Scrollbars follow the theme (light and dark) wherever one is needed. */
+html{scrollbar-gutter:stable}
+*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--text) 32%,transparent) transparent}
+html{scrollbar-color:color-mix(in srgb,var(--text) 32%,transparent) var(--bg)}
+/* Safari and older WebKit fall back to the pseudo-element version of the same look. */
+*::-webkit-scrollbar{width:10px;height:10px}
+*::-webkit-scrollbar-track{background:transparent}
+html::-webkit-scrollbar-track{background:var(--bg)}
+*::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--text) 32%,transparent);border-radius:8px;border:2px solid transparent;background-clip:content-box}
+*::-webkit-scrollbar-thumb:hover{background:color-mix(in srgb,var(--text) 52%,transparent);background-clip:content-box}
+*::-webkit-scrollbar-corner{background:transparent}

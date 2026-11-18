@@ -1,7 +1,6 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
-import { profile } from "@/data/profile";
 import { CaseStudy } from "@/components/projects/CaseStudy";
 import { CommandMenu } from "@/components/chrome/CommandMenu";
 import { Toast } from "@/components/chrome/Toast";
@@ -11,7 +10,6 @@ interface UIContextValue {
   openCase: (index: number, origin?: { x: number; y: number }) => void;
   closeCase: () => void;
   toast: (message: string) => void;
-  copyEmail: () => void;
   openPalette: () => void;
   closePalette: () => void;
   paletteOpen: boolean;
@@ -53,12 +51,6 @@ export function UIProvider({ children }: { children: ReactNode }) {
   const closeCase = useCallback(() => setCaseState((s) => ({ ...s, open: false })), []);
   const navigateCase = useCallback((index: number) => setCaseState((s) => ({ ...s, index })), []);
 
-  const copyEmail = useCallback(() => {
-    const done = () => toast("Email copied");
-    const fail = () => toast(`Copy failed. Email me at ${profile.email}`);
-    if (navigator.clipboard?.writeText) navigator.clipboard.writeText(profile.email).then(done, fail);
-    else fail();
-  }, [toast]);
 
   const requestEng = useCallback(
     (index: number) => {
@@ -94,7 +86,6 @@ export function UIProvider({ children }: { children: ReactNode }) {
       openCase,
       closeCase,
       toast,
-      copyEmail,
       openPalette: () => setPaletteOpen(true),
       closePalette: () => setPaletteOpen(false),
       paletteOpen,
@@ -102,7 +93,7 @@ export function UIProvider({ children }: { children: ReactNode }) {
       requestEng,
       engRequest,
     }),
-    [openCase, closeCase, toast, copyEmail, paletteOpen, scrollToId, requestEng, engRequest],
+    [openCase, closeCase, toast, paletteOpen, scrollToId, requestEng, engRequest],
   );
 
   return (

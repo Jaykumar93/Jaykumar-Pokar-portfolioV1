@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { askItems, type AskAction } from "@/data/ask";
+import { profile } from "@/data/profile";
 import { useUI } from "@/components/providers/UIProvider";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
@@ -19,7 +20,7 @@ function toPieces(answer: string): Piece[] {
 }
 
 export function AskMe() {
-  const { openCase, requestEng, scrollToId, copyEmail } = useUI();
+  const { openCase, requestEng, scrollToId } = useUI();
   const reduced = useReducedMotion();
   const [index, setIndex] = useState(0);
   const [shown, setShown] = useState(0);
@@ -49,7 +50,7 @@ export function AskMe() {
     if (a.type === "go") scrollToId(a.id);
     else if (a.type === "case") openCase(a.index, { x: e.clientX, y: e.clientY });
     else if (a.type === "eng") requestEng(a.index);
-    else if (a.type === "mail") copyEmail();
+    else if (a.type === "mail") window.location.assign(`mailto:${profile.email}`);
     else window.open(a.url, "_blank", "noopener");
   };
 

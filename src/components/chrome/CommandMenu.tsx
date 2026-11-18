@@ -16,12 +16,12 @@ interface Command {
 }
 
 export function CommandMenu() {
-  const { paletteOpen, closePalette, openCase, copyEmail } = useUI();
+  const { paletteOpen, closePalette, openCase } = useUI();
   if (!paletteOpen) return null;
-  return <Palette onClose={closePalette} openCase={openCase} copyEmail={copyEmail} />;
+  return <Palette onClose={closePalette} openCase={openCase} />;
 }
 
-function Palette({ onClose, openCase, copyEmail }: { onClose: () => void; openCase: (i: number) => void; copyEmail: () => void }) {
+function Palette({ onClose, openCase }: { onClose: () => void; openCase: (i: number) => void }) {
   const [query, setQuery] = useState("");
   const [sel, setSel] = useState(0);
   const input = useRef<HTMLInputElement>(null);
@@ -31,11 +31,11 @@ function Palette({ onClose, openCase, copyEmail }: { onClose: () => void; openCa
       ...navLinks.map((l) => ({ label: l.label, kind: "Go to", href: `#${l.id}` })),
       ...projects.map((p, i) => ({ label: `Open ${p.name} case study`, kind: "Project", run: () => openCase(i) })),
       { label: "Switch light / dark theme", kind: "Action", run: toggleTheme },
-      { label: "Copy email", kind: "Action", run: copyEmail },
+      { label: "Send an email", kind: "Link", href: `mailto:${profile.email}` },
       { label: "Open GitHub", kind: "Link", href: profile.github, external: true },
       { label: "Open LinkedIn", kind: "Link", href: profile.linkedin, external: true },
     ],
-    [openCase, copyEmail],
+    [openCase],
   );
 
   const items = commands.filter((c) => c.label.toLowerCase().includes(query.trim().toLowerCase()));
@@ -67,6 +67,7 @@ function Palette({ onClose, openCase, copyEmail }: { onClose: () => void; openCa
       if (!c) return;
       if (c.href) {
         if (c.external) window.open(c.href, "_blank", "noopener");
+        else if (c.href.startsWith("mailto:")) window.location.href = c.href;
         else document.getElementById(c.href.slice(1))?.scrollIntoView({ behavior: "smooth" });
       }
       choose(c);

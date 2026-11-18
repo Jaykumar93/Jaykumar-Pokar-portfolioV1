@@ -1,5 +1,6 @@
 import { ProgressBar } from "@/components/chrome/ProgressBar";
 import { Nav } from "@/components/chrome/Nav";
+import { SocialRail } from "@/components/chrome/SocialRail";
 import { Footer } from "@/components/chrome/Footer";
 import { Hero } from "@/components/hero/Hero";
 import { Metrics } from "@/components/sections/Metrics";
@@ -15,6 +16,7 @@ export default function Home() {
     <>
       <ProgressBar />
       <Nav />
+      <SocialRail />
       <main className="page" id="top">
         <Hero />
         <Metrics />

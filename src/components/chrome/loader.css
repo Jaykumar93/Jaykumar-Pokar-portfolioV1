@@ -1,0 +1,27 @@
+/* Loading page. Server-rendered so it is the first paint, then removed by <Loader /> once the page is ready. */
+.loader{position:fixed;inset:0;z-index:120;display:grid;place-items:center;padding:24px;background:var(--bg);transition:transform .65s cubic-bezier(.76,0,.24,1);animation:ldSafety .01s 6.5s forwards}
+.loader.out{transform:translateY(-100%)}
+.loader.out .ld-in{opacity:0;transform:translateY(-12px)}
+.ld-in{display:grid;gap:14px;justify-items:center;width:min(440px,100%);text-align:center;transition:opacity .35s,transform .5s var(--ease)}
+.ld-name{font:600 clamp(2.2rem,7vw,3.6rem)/1 var(--f-display);letter-spacing:-.045em;color:var(--text)}
+.ld-name b{font-weight:600;color:var(--text)}
+.ld-role{font:400 .95rem var(--f-body);color:var(--text-2)}
+.ld-bar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:100%;margin-top:18px}
+.ld-seg{display:grid;gap:8px}
+.ld-track{display:block;height:6px;border-radius:3px;background:var(--line);overflow:hidden}
+.ld-track i{display:block;height:100%;width:100%;transform-origin:0 50%;transform:scaleX(0);border-radius:3px}
+.ld-seg small{font:500 .8rem var(--f-body);color:var(--text-3);transition:color .3s}
+.ld-seg small.on{color:var(--text)}
+.ld-pct{font:500 .85rem var(--f-mono);color:var(--text-3);font-variant-numeric:tabular-nums}
+
+/* Hold the hero entrance and the page scroll until the loader leaves. */
+html[data-loading]{overflow:hidden}
+html[data-loading] .fade,html[data-loading] .hero h1 .l span{animation-play-state:paused}
+
+/* Safety net: if scripting fails, the overlay still gets out of the way. */
+@keyframes ldSafety{to{opacity:0;visibility:hidden;pointer-events:none}}
+
+@media (prefers-reduced-motion:reduce){
+  .loader{transition:none}
+  .ld-in{transition:none}
+}
